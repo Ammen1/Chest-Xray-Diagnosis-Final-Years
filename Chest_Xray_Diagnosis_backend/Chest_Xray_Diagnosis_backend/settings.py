@@ -84,11 +84,12 @@ CORS_ALLOW_ALL_ORIGINS =True
 # settings.py
 
 REST_FRAMEWORK = {
-    
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    # Other settings
 }
+
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
@@ -170,20 +171,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static"),
+# ]
 # In your settings.py file
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),  # Adjust the path as per your project structure
+# ]
+
+
+
+
+# Assuming BASE_DIR is defined at the top of your settings file
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # Adjust the path as per your project structure
+    os.path.join(BASE_DIR, 'static'),
 ]
 
-
-# https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
-STATICFILES_FINDERS = [
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-]
 
 # Media files config
 MEDIA_URL = "/media/"
